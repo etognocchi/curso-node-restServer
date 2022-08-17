@@ -91,10 +91,13 @@ const usuariosDelete = async (req, res = response) => {
     // Borrado Lógico
     const usuario = Usuario.findByIdAndUpdate( id , {estado: false} );
 
+    // const usuarioAutenticado = req.usuarioAutenticado;
+
     res.json({
         ok: true,
         msg: 'delete API - controlador',
-        usuario
+        usuario,
+        // usuarioAutenticado
     });
 }
 

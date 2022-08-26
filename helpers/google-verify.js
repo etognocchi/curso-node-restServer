@@ -12,8 +12,6 @@ async function googleVerify( token = '' ) {
       //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
   });
   const { name, picture, email} = ticket.getPayload();
-  
-  console.log(payload);
 
   return { 
     nombre: name, 

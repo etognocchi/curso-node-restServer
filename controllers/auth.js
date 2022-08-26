@@ -51,12 +51,15 @@ const login = async ( req , res = response ) => {
 
 }
 
-const googleSingIn = ( req, res = response ) => {
+const googleSingIn = async ( req, res = response ) => {
     const { id_token } = req.body;
 
     try {
         
         const { correo, nombre, img } = await googleVerify( id_token );
+        console.log(' correo : ', correo);
+        console.log(' nombre : ', nombre);
+        console.log(' img : ', img);
 
         let usuario = await Usuario.findOne( { correo } );
 
@@ -66,6 +69,7 @@ const googleSingIn = ( req, res = response ) => {
                 nombre,
                 correo,
                 password: '123',
+                rol: 'USER_ROLE',
                 img,
                 google: true
             }
@@ -91,6 +95,7 @@ const googleSingIn = ( req, res = response ) => {
         })    
 
     } catch (error) {
+        console.log(error);
         res.status(400).json({
             ok: false,
             msg: 'El token no se pudo verificar.'
